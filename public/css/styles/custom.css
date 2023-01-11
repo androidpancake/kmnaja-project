@@ -1,0 +1,26 @@
+body {
+    font-family: 'Poppins', sans-serif !important;
+}
+
+.container-fluid{
+    padding: 0 !important;
+}
+
+.header{
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../image/header.png');
+    border-bottom-left-radius: 54px;
+    border-bottom-right-radius: 54px;
+    background-repeat: no-repeat;
+}
+
+.navbar{
+    transition: all 0.5s;
+}
+
+.navbar-scrolled{
+    background-color: #FF3364;
+}
+
+.section-success{
+    height: 90vh;
+}
