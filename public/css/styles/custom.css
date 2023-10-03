@@ -7,9 +7,10 @@ body {
 }
 
 .header{
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../image/header.png');
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../../assets/image/header.png');
     border-bottom-left-radius: 54px;
     border-bottom-right-radius: 54px;
+    width: 100%;
     background-repeat: no-repeat;
 }
 

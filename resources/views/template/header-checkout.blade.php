@@ -18,24 +18,28 @@
     <nav class="navbar navbar-expand-sm navbar-light bg-white fixed-top navbar-scrolled">
         <ul class="nav container navbar-nav justify-content-between">
             <li class="nav-item">
-            <a class="navbar-brand fw-bold" href="#" aria-current="page">KMNAJA.ID</a>
+            <a class="navbar-brand fw-bold" href="{{ route('home') }}" aria-current="page">KMNAJA.ID</a>
             <li class="nav-item text-white">
             <div class="row flex-row align-items-center">
+              @auth
                 <div class="col">
-                <div class="fs-6 fw-light">Holla, </div>
-                <div class="fs-6 fw-semibold">Holla, </div>
+                <div class="fs-6 fw-light text-black">Holla, </div>
+                <div class="fs-6 fw-semibold text-black">{{ Auth::user()->name }}</div>
                 </div>
                 <div class="col">
                 <div class="fs-6 fw-light">
                     <img src="{{ url('assets/image/bali.png')}}" class="rounded-circle" style="width: 48px;" alt="">
                 </div>
                 </div>
+                @endauth
+                @guest
                 <div class="col">
                 <button class="btn btn-primary" type="button">Login</button>
                 </div>
                 <div class="col">
                 <button class="btn btn-outline-primary" type="button">Sign Up</button>
                 </div>
+                @endguest
             </div>
             </li>
         </ul>

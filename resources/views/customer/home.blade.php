@@ -11,10 +11,10 @@
               </div>
               <div>
                 <button class="btn btn-primary w-100 text-white p-3" type="button">
-                  <div class="d-flex gap-3 fs-5 fw-bold">
+                  <a href="#popular" class="d-flex gap-3 fs-5 fw-bold text-white text-decoration-none">
                   Get Started
                   <i class="bi bi-globe-asia-australia"></i>
-                </div>
+                  </a>
                 </button>
               </div>
             </div>
@@ -68,46 +68,21 @@
 <!-- end header -->
 <!-- content -->
       <!-- section1 -->
-      <section>
+      <section id="popular">
         <div class="container my-5">
           <h3 class="fw-semibold py-2">Popular Destinations and Events</h3>
-          <div class="row">
-            <div class="col">
-              <div class="card border-0">
-                <img class="card-img-top h-50" src="./frontend/image/komodo.png" alt="">
-                <div class="card-body">
-                  <h5 class="card-title fw-semibold">Melihat Komodo</h5>
-                  <p class="card-text">Lombok</p>
-                </div>
+            <div class="row">
+              @foreach($items as $item)
+              <div class="col">
+                <a class="card border-0" href="{{ route('detail', $item->slug) }}" class="text-decoration-none">
+                  <img class="card-img-top h-50" src="{{ $item->galleries->count() ? Storage::url($item->galleries->first()->image) : '' }}" alt="">
+                  <div class="card-body">
+                    <h5 class="card-title fw-semibold">{{ $item->featured_event }}</h5>
+                    <p class="card-text">{{ $item->title }}</p>
+                  </div>
+                </a>
               </div>
-            </div>
-            <div class="col">
-              <div class="card border-0">
-                <img class="card-img-top" src="./frontend/image/bromo.png" alt="">
-                <div class="card-body">
-                  <h5 class="card-title fw-semibold">Gunung Bromo</h5>
-                  <p class="card-text">East Java</p>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="card border-0">
-                <img class="card-img-top" src="./frontend/image/bali.png" alt="">
-                <div class="card-body">
-                  <h5 class="card-title fw-semibold">Upacara Adat</h5>
-                  <p class="card-text">Bali</p>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="card border-0">
-                <img class="card-img-top" src="./frontend/image/labuan-bajo.png" alt="">
-                <div class="card-body">
-                  <h5 class="card-title fw-semibold">Labuan Bajo</h5>
-                  <p class="card-text">NTB</p>
-                </div>
-              </div>
-            </div>
+              @endforeach
           </div>
         </div>
       </section>

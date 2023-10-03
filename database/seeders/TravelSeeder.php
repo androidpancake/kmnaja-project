@@ -16,11 +16,11 @@ class TravelSeeder extends Seeder
     public function run()
     {
         TravelPackage::create([
-            'title' => 'Bromo',
-            'slug' => 'GotoBromo',
-            'location' => 'Probolinggo, Jawa Timur',
-            'about' => 'Gunung bromo',
-            'featured_event' => 'Java Gunung Jazz',
+            'title' => 'Bali',
+            'slug' => 'bali',
+            'location' => 'Bali, bali',
+            'about' => 'Kuta',
+            'featured_event' => 'Bali Jazz',
             'languange' => 'IND',
             'foods' => 'Sate',
             'departure_date' => '2023-01-09',

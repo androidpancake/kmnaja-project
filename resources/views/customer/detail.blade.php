@@ -7,38 +7,36 @@
             <div class="row">
                 <div class="col-8">
                     <div class="p-4 bg-white border border-1 rounded-3">
-                        <h1 class="fw-semibold">Bromo</h1>
-                        <div class="fs-6 text-muted">Bromo, Indonesia</div>
+                        <h1 class="fw-semibold">{{ $item->title }}</h1>
+                        <div class="fs-6 text-muted">{{ $item->location }}</div>
+                        @if($item->galleries->count())
                         <div class="row mt-2 g-2">
                             <div class="col-lg-12">
-                                <img src="{{ url('assets/image/bromo.jpg')}}" class="img-fluid" alt="">
+                                <img src="{{ Storage::url($item->galleries->first()->image) }}" class="img-fluid" alt="">
                             </div>
+                            @foreach($item->galleries as $gallery)
                             <div class="col-md-3">
-                                <img src="./frontend/image/bromo.jpg" class="img-fluid" alt="">
+                                <img src="{{ Storage::url($gallery->image)}}" class="img-fluid" alt="">
                             </div>
-                            <div class="col-md-3">
-                                <img src="./frontend/image/bromo.jpg" class="img-fluid" alt="">
-                            </div>
-                            <div class="col-md-3">
-                                <img src="./frontend/image/bromo.jpg" class="img-fluid" alt="">
-                            </div>
-                            <div class="col-md-3">
-                                <img src="./frontend/image/bromo.jpg" class="img-fluid" alt="">
-                            </div>
+                            @endforeach
                         </div>
+                        @endif
+                        
                         <div class="mt-3">
-                            <h4>Title</h4>
-                            <div class="fs-6">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Saepe obcaecati esse totam tempora, accusamus dolores aliquid sed commodi sequi. Eius maxime corrupti eligendi dolorum enim repudiandae nihil at perferendis harum.</div>
+                            <h4 class="fw-semibold">Deskripsi</h4>
+                            <div class="fs-6">
+                                {{ $item->about }}
+                            </div>
                             <div class="row mt-5">
                                 <div class="col-md-4 border-end d-flex align-items-center gap-3">
                                     <span class="bg-light p-3 rounded-circle float-start">
                                         <i class="bi bi-ticket"></i>
                                     </span>
                                     <div>   
-                                        <div class="fs-5">
-                                            Test test
+                                        <div class="fs-5 fw-semibold">
+                                            Featured Event
                                         </div>
-                                        <div class="fs-6 fw-light">Test</div>
+                                        <div class="fs-6 fw-light">{{ $item->featured_event }}</div>
                                     </div>
                                     
                                 </div>
@@ -47,10 +45,10 @@
                                         <i class="bi bi-ticket"></i>
                                     </span>
                                     <div>   
-                                        <div class="fs-5">
-                                            Test test
+                                        <div class="fs-5 fw-semibold">
+                                            Languange
                                         </div>
-                                        <div class="fs-6 fw-light">Test</div>
+                                        <div class="fs-6 fw-light">{{ $item->languange }}</div>
                                     </div>
                                     
                                 </div>
@@ -59,13 +57,14 @@
                                         <i class="bi bi-ticket"></i>
                                     </span>
                                     <div>   
-                                        <div class="fs-5">
-                                            Test test
+                                        <div class="fs-5 fw-semibold">
+                                            Foods
                                         </div>
-                                        <div class="fs-6 fw-light">Test</div>
+                                        <div class="fs-6 fw-light">{{ $item->foods }}</div>
                                     </div>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -80,11 +79,15 @@
                             <tbody>
                                 <tr>
                                     <td style="width: 50%;">Date of Departure</td>
-                                    <td class="text-end">Test</td>
+                                    <td class="text-end">{{ $item->departure_data }}</td>
                                 </tr>
                                 <tr>
-                                    <td style="width: 50%;">Date of Departure</td>
-                                    <td class="text-end">Test</td>
+                                    <td style="width: 50%;">Type</td>
+                                    <td class="text-end">{{$item->type}}</td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 50%;">Price</td>
+                                    <td class="text-end">Rp.{{$item->price}} / person</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -92,9 +95,21 @@
                     </div>
                     <!-- end card -->
                     <!-- button -->
+                    @auth
                     <div class="container-fluid">
-                        <button class="btn btn-primary text-white w-100 rounded-0 p-3" type="button">Text</button>
+                        <!-- <p>{{ $item->id }}</p> -->
+                        <form action="{{ route('checkout.process', $item->id) }}" method="POST">
+                            @csrf
+                            <button type="submit" class="btn btn-primary text-white w-100 rounded-0 p-3">Join Now</button>
+                        </form>
                     </div>
+                    @endauth
+                    @guest
+                    <div class="container-fluid">
+                        <a href="{{ route('login')}}" class="btn btn-primary text-white w-100 rounded-0 p-3" type="button">Login or Register</a>
+                    </div>
+                    @endguest
+
                     <!-- end button -->
                 </div>
             </div>

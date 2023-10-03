@@ -39,6 +39,8 @@
                         </button>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="#">Profil</a></li>
+                            <li><a class="dropdown-item" href="{{ route('checkout', Auth::user()->id) }}">Checkout</a></li>
+
                             @if(Auth::user()->roles == 'ADMIN')
                             <li><a class="dropdown-item" href="/admin">Admin page</a></li>
                             @endif
@@ -54,13 +56,13 @@
                     <img src="{{ url('assets/image/bali.png')}}" class="rounded-circle" style="width: 48px;" alt="">
                   </div>
                 </div>
-                @Endauth
+                @endauth
                 @guest
                 <div class="col">
                   <a href="/login" class="btn btn-primary" type="button">Login</a>
                 </div>
                 <div class="col">
-                  <a href="/register" class="btn btn-outline-primary" type="button">Sign Up</a>
+                  <a href="/register" class="btn btn-outline-primary d-inline" type="button">SignUp</a>
                 </div>
                 @endguest
               </div>

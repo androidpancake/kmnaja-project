@@ -20,7 +20,8 @@ class AdminSeeder extends Seeder
             'name' => 'Admin1',
             'email' => 'admin1@gmail.com',
             'password' => Hash::make('ilham123'),
-            'roles' => 'ADMIN'
+            'roles' => 'ADMIN',
+            'username' => 'admin'
         ]);
     }
 }
